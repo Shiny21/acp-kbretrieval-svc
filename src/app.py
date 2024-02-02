@@ -10,8 +10,9 @@ def Ask_LLM():
     if request.method == 'POST':
         request_data = request.get_json()
         query = request_data['Question']
-        result = al.llm_response(query)
+        index_name = request_data['Client']
+        result = al.llm_response(query,index_name)
         return jsonify(result)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(port=5000)
